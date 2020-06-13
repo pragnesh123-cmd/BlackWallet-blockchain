@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
+
+
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+</head>
+
+<body>
+
+
+    <div class="container-fluid">
+
+        <section class="signup">
+
+            <div class="container-fluid">
+
+                <h3>Name = {{data.name}}</h3>
+                <h3>Email = {{data.email}}</h3>
+                <h3>Hash = {{data.u_hash}}</h3>
+                <h3>Amount = {{data.amount}}</h3>
+                <h3>Number = {{data.m_no}}</h3>
+                <h3>Bitcoin = {{data.bitcoin}} <a href="{% url 'admin_mine_bitcoin' data.id %}">mine bitcoin</a></h1>
+                    <h3>Total Transactions = {{tot_trans}}</h3>
+                    <h3>Total Users = {{user_count}} <a href="{% url 'all_users' %}">view Users</a></h3>
+                    <h3>Total Users Transactions = {{users_trans_count}}</h3>
+                    <button style="background-color: yellow;"><a href="{% url 'admin_transact_money'%}">Pay Money</a></button>
+                    <t>
+                        <button style="background-color: yellow;"><a href="{% url 'admin_transact_bitcoin'%}">Pay
+                                Bitcoin</a></button>
+                        <t>
+                            <button style="background-color:white"><a href="{% url 'logout' %}">Logout</a></button>
+                            <a href="{% url 'admin_convert' data.id %}">Convert Your bitcoin to Indian Rupees</a><br><br>
+
+                            <h2 class="text-center">All Transactions</h2>
+                            <table border="2" style="background-color: ghostwhite;margin-top: 2%;">
+                                <thead>
+                                    <tr>
+                                        <th>Sender</th>
+                                        <th>Reciver</th>
+                                        <th>Amount</th>
+                                        <th>Bitcoin</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for t in trans %}
+                                    <tr>
+                                        <td>{{t.sender}}</td>
+                                        <td>{{t.receiver}}</td>
+                                        <td>{{t.amount}}</td>
+                                        <td>{{t.bitcoin}}</td>
+                                        <td>{{t.time}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- JS -->
+    <script src="{% static '/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static '/js/main.js' %}"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+{% endblock%}

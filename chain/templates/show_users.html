@@ -1,0 +1,23 @@
+<h1>Users of Blockchain</h1>
+<br>
+<table border="2">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Hash</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for u in all_users %}
+            <tr>
+                <td><a href="{% url 'view_user' u.id %}">{{u.name}}</a></td>
+                <td>{{u.email}}</td>
+                <td>{{u.u_hash}}</td>
+                <td><a href="{% url 'delete_user' u.id %}">Delete</a>
+            </td>
+        {% endfor %}
+    </tbody> 
+
+</table>

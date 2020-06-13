@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Transaction Form</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <h2>Transaction Form</h2>
+        <label>Reciver Hash : </label>
+        <input type="text" name="reciver" id="id_reciver" placeholder="reciver hash" required><br>
+        <label>Amount : </label>
+        <input type="text" name="amount" id="id_amount"><br>
+        <label>Payment Notes : </label>
+        <textarea name="send_note" rows="10" cols="30"></textarea><br>
+        <input type="submit" value="Pay">
+
+        {% for message in messages %}
+            {% if message.tags %}
+                {{ message }}
+            {% endif %}
+        {% endfor %}
+    </form>
+</body>
+</html>
